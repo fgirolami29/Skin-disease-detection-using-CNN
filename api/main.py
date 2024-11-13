@@ -13,6 +13,7 @@ app = FastAPI()
 origins = [
     "http://localhost",
     "http://localhost:3000",
+    "http://localhost:3002",
 ]
 app.add_middleware(
     CORSMiddleware,
@@ -22,7 +23,10 @@ app.add_middleware(
     allow_headers=["*"],
 )
 
-MODEL = tf.keras.models.load_model(r"H:\Projexts\ml\skin-disese\skin-disease\models\1")
+#load_options = tf.saved_model.LoadOptions(experimental_io_device="/job:localhost")
+#MODEL = tf.keras.models.load_model(r"/Users/federicogirolami/Documents/GitHub/Skin-disease-detection-using-CNN/models/1", options=load_options)
+
+MODEL = tf.keras.models.load_model("/Users/federicogirolami/Documents/GitHub/Skin-disease-detection-using-CNN/api/new_model.h5")
 
 CLASS_NAMES = ["Acne and Rosacea", "Acne and Rosacea", "Basal Cell Carcinoma","Hair Loss  Alopecia","Ringworm"]
 
